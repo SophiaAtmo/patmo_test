@@ -50,13 +50,13 @@ program test
      call computeH2OCondensation((1.8d1 / Av), 1d0, 1d-4, .FALSE.)
      
      ntot(:) = sum(nAll(:,1:chemSpeciesNumber),2)
-     n(:, patmo_idx_M)= ntot(:)
-     n(:, patmo_idx_M) = 0.0d0
-     do j = 1, chemSpeciesNumber
-       if (j /= patmo_idx_M) then
-         n(:, patmo_idx_M) = n(:, patmo_idx_M) + nAll(:, j)
-       end if
-     end do
+     !n(:, patmo_idx_M)= ntot(:)
+     !n(:, patmo_idx_M) = 0.0d0
+     !do j = 1, chemSpeciesNumber
+     !  if (j /= patmo_idx_M) then
+      !   n(:, patmo_idx_M) = n(:, patmo_idx_M) + nAll(:, j)
+      ! end if
+     !end do
      
      call patmo_run(dt)
      t = t + dt
@@ -69,8 +69,8 @@ program test
      
      print '(F20.1, F20.2, A1, F20.10)', t, t / tend * 1d2, "%", (patmo_getTotalMass()-imass)/imass
      print '(F20.1)'
-     print *, "n(1,patmo_idx_M), ntot = ", n(1,patmo_idx_M), ntot(1)
-     call patmo_dumpDensityToFile(30, t, patmo_idx_CO)
+     print *, "n(1,patmo_idx_M), ntot = ", ntot(1)
+     call patmo_dumpDensityToFile(31, t, patmo_idx_CO)
      if(t>=tend) exit
   end do
 

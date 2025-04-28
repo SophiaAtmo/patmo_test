@@ -569,16 +569,6 @@ contains
   end function patmo_getTotalMass
 
 !***************************
-function patmo_getTotalMassNuclei_C()
- use patmo_utils
- implicit none
- real*8::patmo_getTotalMassNuclei_C
-
-patmo_getTotalMassNuclei_C = getTotalMassNuclei_C() 
-
-end function
-
-!***************************
 function patmo_getTotalMassNuclei_H()
  use patmo_utils
  implicit none
@@ -589,12 +579,12 @@ patmo_getTotalMassNuclei_H = getTotalMassNuclei_H()
 end function
 
 !***************************
-function patmo_getTotalMassNuclei_M()
+function patmo_getTotalMassNuclei_C()
  use patmo_utils
  implicit none
- real*8::patmo_getTotalMassNuclei_M
+ real*8::patmo_getTotalMassNuclei_C
 
-patmo_getTotalMassNuclei_M = getTotalMassNuclei_M() 
+patmo_getTotalMassNuclei_C = getTotalMassNuclei_C() 
 
 end function
 
@@ -877,23 +867,23 @@ end function
     integer::i
 
     open(22,file=trim(fname),status="replace")
-    write(22,*) "altitude/km, O+O2+M->O3+M, O+O3->O2+O2, H+HO2->O+H2O, O+CO+M->CO2+M, H+O2+M->HO2+M, O2->O+O, O3->O2+O, CO2->CO+O, O3+M->O+O2+M, O2+O2->O+O3, O+H2O->H+HO2, CO2+M->O+CO+M, HO2+M->H+O2+M"
+    write(22,*) "altitude/km, O+O2->O3, O+O3->O2+O2, H+HO2->O+H2O, O+CO->CO2, H+O2->HO2, O2->O+O, O3->O2+O, CO2->CO+O, O3->O+O2, O2+O2->O+O3, O+H2O->H+HO2, CO2->O+CO, HO2->H+O2"
     !loop on cells
     do i=1,cellsNumber
         write(22,*) i, &
-        krate(i,1)*nall(i,patmo_idx_O)*nall(i,patmo_idx_O2)*nall(i,patmo_idx_M), &
+        krate(i,1)*nall(i,patmo_idx_O)*nall(i,patmo_idx_O2), &
         krate(i,2)*nall(i,patmo_idx_O)*nall(i,patmo_idx_O3), &
         krate(i,3)*nall(i,patmo_idx_H)*nall(i,patmo_idx_HO2), &
-        krate(i,4)*nall(i,patmo_idx_O)*nall(i,patmo_idx_CO)*nall(i,patmo_idx_M), &
-        krate(i,5)*nall(i,patmo_idx_H)*nall(i,patmo_idx_O2)*nall(i,patmo_idx_M), &
+        krate(i,4)*nall(i,patmo_idx_O)*nall(i,patmo_idx_CO), &
+        krate(i,5)*nall(i,patmo_idx_H)*nall(i,patmo_idx_O2), &
         krate(i,6)*nall(i,patmo_idx_O2), &
         krate(i,7)*nall(i,patmo_idx_O3), &
         krate(i,8)*nall(i,patmo_idx_CO2), &
-        krate(i,9)*nall(i,patmo_idx_O3)*nall(i,patmo_idx_M), &
+        krate(i,9)*nall(i,patmo_idx_O3), &
         krate(i,10)*nall(i,patmo_idx_O2)*nall(i,patmo_idx_O2), &
         krate(i,11)*nall(i,patmo_idx_O)*nall(i,patmo_idx_H2O), &
-        krate(i,12)*nall(i,patmo_idx_CO2)*nall(i,patmo_idx_M), &
-        krate(i,13)*nall(i,patmo_idx_HO2)*nall(i,patmo_idx_M)
+        krate(i,12)*nall(i,patmo_idx_CO2), &
+        krate(i,13)*nall(i,patmo_idx_HO2)
     end do
     write(22,*)
     close(22)

@@ -70,14 +70,9 @@ contains
     do i=1,reactionsNumber
       do j=1,cellsNumber
         flux1(j) = krate(j,i) &
-            * n(j,indexReactants2(i)) &
-            * n(j,indexReactants3(i))
-        flux2(j) = krate(j,i) &
-            * n(j,indexReactants1(i)) &
-            * n(j,indexReactants3(i))
-        flux3(j) = krate(j,i) &
-            * n(j,indexReactants1(i)) &
             * n(j,indexReactants2(i))
+        flux2(j) = krate(j,i) &
+            * n(j,indexReactants1(i))
         pd_vec((indexReactants1(i)-1)*cellsNumber+j, &
             (indexReactants1(i)-1)*cellsNumber+j) = &
             pd_vec((indexReactants1(i)-1)*cellsNumber+j, &
@@ -85,10 +80,6 @@ contains
         pd_vec((indexReactants2(i)-1)*cellsNumber+j, &
             (indexReactants1(i)-1)*cellsNumber+j) = &
             pd_vec((indexReactants2(i)-1)*cellsNumber+j, &
-            (indexReactants1(i)-1)*cellsNumber+j) - flux1(j)
-        pd_vec((indexReactants3(i)-1)*cellsNumber+j, &
-            (indexReactants1(i)-1)*cellsNumber+j) = &
-            pd_vec((indexReactants3(i)-1)*cellsNumber+j, &
             (indexReactants1(i)-1)*cellsNumber+j) - flux1(j)
 
         pd_vec((indexProducts1(i)-1)*cellsNumber+j, &
@@ -108,10 +99,6 @@ contains
             (indexReactants2(i)-1)*cellsNumber+j) = &
             pd_vec((indexReactants2(i)-1)*cellsNumber+j, &
             (indexReactants2(i)-1)*cellsNumber+j) - flux2(j)
-        pd_vec((indexReactants3(i)-1)*cellsNumber+j, &
-            (indexReactants2(i)-1)*cellsNumber+j) = &
-            pd_vec((indexReactants3(i)-1)*cellsNumber+j, &
-            (indexReactants2(i)-1)*cellsNumber+j) - flux2(j)
 
         pd_vec((indexProducts1(i)-1)*cellsNumber+j, &
             (indexReactants2(i)-1)*cellsNumber+j) = &
@@ -121,28 +108,6 @@ contains
             (indexReactants2(i)-1)*cellsNumber+j) = &
             pd_vec((indexProducts2(i)-1)*cellsNumber+j, &
             (indexReactants2(i)-1)*cellsNumber+j) + flux2(j)
-
-        pd_vec((indexReactants1(i)-1)*cellsNumber+j, &
-            (indexReactants3(i)-1)*cellsNumber+j) = &
-            pd_vec((indexReactants1(i)-1)*cellsNumber+j, &
-            (indexReactants3(i)-1)*cellsNumber+j) - flux3(j)
-        pd_vec((indexReactants2(i)-1)*cellsNumber+j, &
-            (indexReactants3(i)-1)*cellsNumber+j) = &
-            pd_vec((indexReactants2(i)-1)*cellsNumber+j, &
-            (indexReactants3(i)-1)*cellsNumber+j) - flux3(j)
-        pd_vec((indexReactants3(i)-1)*cellsNumber+j, &
-            (indexReactants3(i)-1)*cellsNumber+j) = &
-            pd_vec((indexReactants3(i)-1)*cellsNumber+j, &
-            (indexReactants3(i)-1)*cellsNumber+j) - flux3(j)
-
-        pd_vec((indexProducts1(i)-1)*cellsNumber+j, &
-            (indexReactants3(i)-1)*cellsNumber+j) = &
-            pd_vec((indexProducts1(i)-1)*cellsNumber+j, &
-            (indexReactants3(i)-1)*cellsNumber+j) + flux3(j)
-        pd_vec((indexProducts2(i)-1)*cellsNumber+j, &
-            (indexReactants3(i)-1)*cellsNumber+j) = &
-            pd_vec((indexProducts2(i)-1)*cellsNumber+j, &
-            (indexReactants3(i)-1)*cellsNumber+j) + flux3(j)
 
       end do
     end do

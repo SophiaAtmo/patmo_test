@@ -31,7 +31,7 @@ contains
     Tgas4(:) = Tgas(:)**4
     invTgas(:) = 1d0/Tgas(:)
 
-    !O3 + M -> O + O2 + M
+    !O3 -> O + O2
     do i=1,cellsNumber
       if(Tgas(i)<1d3.and.Tgas(i).ge.2d2) then
         krate(i,9) = krate(i,1)*exp(3.543341d0*(lnTgas(i)-1d0) &
@@ -102,7 +102,7 @@ contains
       end if
     end do
 
-    !CO2 + M -> O + CO + M
+    !CO2 -> O + CO
     do i=1,cellsNumber
       if(Tgas(i)<1d3.and.Tgas(i).ge.2d2) then
         krate(i,12) = krate(i,4)*exp(4.390988d0*(lnTgas(i)-1d0) &
@@ -127,7 +127,7 @@ contains
       krate(i,12) = krate(i,12) / ntot(i)
     end do
 
-    !HO2 + M -> H + O2 + M
+    !HO2 -> H + O2
     do i=1,cellsNumber
       if(Tgas(i)<1d3.and.Tgas(i).ge.2d2) then
         krate(i,13) = krate(i,5)*exp(1.980658d0*(lnTgas(i)-1d0) &

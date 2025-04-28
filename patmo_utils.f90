@@ -126,8 +126,7 @@ contains
     do i=1,reactionsNumber
       getFlux(i) = krate(icell,i) &
           * n(indexReactants1(i)) &
-          * n(indexReactants2(i)) &
-          * n(indexReactants3(i))
+          * n(indexReactants2(i))
     end do
 
   end function getFlux
@@ -154,7 +153,6 @@ contains
       if(flux(i)>=fluxFrac) then
         degree(indexReactants1(i)) = degree(indexReactants1(i)) + 1
         degree(indexReactants2(i)) = degree(indexReactants2(i)) + 1
-        degree(indexReactants3(i)) = degree(indexReactants3(i)) + 1
         degree(indexProducts1(i)) = degree(indexProducts1(i)) + 1
         degree(indexProducts2(i)) = degree(indexProducts2(i)) + 1
 
@@ -197,7 +195,6 @@ contains
 
     getSpeciesMass(patmo_idx_O) = 2.678768d-23
     getSpeciesMass(patmo_idx_O2) = 5.357536d-23
-    getSpeciesMass(patmo_idx_M) = 0d0
     getSpeciesMass(patmo_idx_O3) = 8.036305d-23
     getSpeciesMass(patmo_idx_H) = 1.673533d-24
     getSpeciesMass(patmo_idx_HO2) = 5.52489d-23
@@ -216,7 +213,6 @@ contains
 
     getSpeciesNames(patmo_idx_O) = "O"
     getSpeciesNames(patmo_idx_O2) = "O2"
-    getSpeciesNames(patmo_idx_M) = "M"
     getSpeciesNames(patmo_idx_O3) = "O3"
     getSpeciesNames(patmo_idx_H) = "H"
     getSpeciesNames(patmo_idx_HO2) = "HO2"
@@ -225,26 +221,6 @@ contains
     getSpeciesNames(patmo_idx_CO2) = "CO2"
 
   end function getSpeciesNames
-
-  !***************************
-  function getTotalMassNuclei_C()
-    use patmo_commons
-    use patmo_parameters
-    implicit none
-    integer::icell
-    real*8::getTotalMassNuclei_C
-    real*8::m(speciesNumber)
-
-    m(:) = getSpeciesMass()
-
-    getTotalMassNuclei_C = 0d0
-
-    do icell=1,cellsNumber
-      getTotalMassNuclei_C = getTotalMassNuclei_C + m(patmo_idx_CO) * nall(icell,patmo_idx_CO)
-      getTotalMassNuclei_C = getTotalMassNuclei_C + m(patmo_idx_CO2) * nall(icell,patmo_idx_CO2)
-    end do
-
-  end function
 
   !***************************
   function getTotalMassNuclei_H()
@@ -268,20 +244,21 @@ contains
   end function
 
   !***************************
-  function getTotalMassNuclei_M()
+  function getTotalMassNuclei_C()
     use patmo_commons
     use patmo_parameters
     implicit none
     integer::icell
-    real*8::getTotalMassNuclei_M
+    real*8::getTotalMassNuclei_C
     real*8::m(speciesNumber)
 
     m(:) = getSpeciesMass()
 
-    getTotalMassNuclei_M = 0d0
+    getTotalMassNuclei_C = 0d0
 
     do icell=1,cellsNumber
-      getTotalMassNuclei_M = getTotalMassNuclei_M + m(patmo_idx_M) * nall(icell,patmo_idx_M)
+      getTotalMassNuclei_C = getTotalMassNuclei_C + m(patmo_idx_CO) * nall(icell,patmo_idx_CO)
+      getTotalMassNuclei_C = getTotalMassNuclei_C + m(patmo_idx_CO2) * nall(icell,patmo_idx_CO2)
     end do
 
   end function

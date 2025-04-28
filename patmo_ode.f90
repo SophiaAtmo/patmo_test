@@ -112,77 +112,63 @@ contains
 
     dn(:,:) = 0d0
     dn(:,patmo_idx_O) = &
-        - krate(:,1)*n(:,patmo_idx_O)*n(:,patmo_idx_O2)*n(:,patmo_idx_M) &
+        - krate(:,1)*n(:,patmo_idx_O)*n(:,patmo_idx_O2) &
         - krate(:,2)*n(:,patmo_idx_O)*n(:,patmo_idx_O3) &
         + krate(:,3)*n(:,patmo_idx_H)*n(:,patmo_idx_HO2) &
-        - krate(:,4)*n(:,patmo_idx_O)*n(:,patmo_idx_CO)*n(:,patmo_idx_M) &
+        - krate(:,4)*n(:,patmo_idx_O)*n(:,patmo_idx_CO) &
         + krate(:,6)*n(:,patmo_idx_O2) &
         + krate(:,6)*n(:,patmo_idx_O2) &
         + krate(:,7)*n(:,patmo_idx_O3) &
         + krate(:,8)*n(:,patmo_idx_CO2) &
-        + krate(:,9)*n(:,patmo_idx_O3)*n(:,patmo_idx_M) &
+        + krate(:,9)*n(:,patmo_idx_O3) &
         + krate(:,10)*n(:,patmo_idx_O2)*n(:,patmo_idx_O2) &
         - krate(:,11)*n(:,patmo_idx_O)*n(:,patmo_idx_H2O) &
-        + krate(:,12)*n(:,patmo_idx_CO2)*n(:,patmo_idx_M)
+        + krate(:,12)*n(:,patmo_idx_CO2)
 
     dn(:,patmo_idx_O2) = &
-        - krate(:,1)*n(:,patmo_idx_O)*n(:,patmo_idx_O2)*n(:,patmo_idx_M) &
+        - krate(:,1)*n(:,patmo_idx_O)*n(:,patmo_idx_O2) &
         + krate(:,2)*n(:,patmo_idx_O)*n(:,patmo_idx_O3) &
         + krate(:,2)*n(:,patmo_idx_O)*n(:,patmo_idx_O3) &
-        - krate(:,5)*n(:,patmo_idx_H)*n(:,patmo_idx_O2)*n(:,patmo_idx_M) &
+        - krate(:,5)*n(:,patmo_idx_H)*n(:,patmo_idx_O2) &
         - krate(:,6)*n(:,patmo_idx_O2) &
         + krate(:,7)*n(:,patmo_idx_O3) &
-        + krate(:,9)*n(:,patmo_idx_O3)*n(:,patmo_idx_M) &
+        + krate(:,9)*n(:,patmo_idx_O3) &
         - krate(:,10)*n(:,patmo_idx_O2)*n(:,patmo_idx_O2) &
         - krate(:,10)*n(:,patmo_idx_O2)*n(:,patmo_idx_O2) &
-        + krate(:,13)*n(:,patmo_idx_HO2)*n(:,patmo_idx_M)
-
-    dn(:,patmo_idx_M) = &
-        - krate(:,1)*n(:,patmo_idx_O)*n(:,patmo_idx_O2)*n(:,patmo_idx_M) &
-        + krate(:,1)*n(:,patmo_idx_O)*n(:,patmo_idx_O2)*n(:,patmo_idx_M) &
-        - krate(:,4)*n(:,patmo_idx_O)*n(:,patmo_idx_CO)*n(:,patmo_idx_M) &
-        + krate(:,4)*n(:,patmo_idx_O)*n(:,patmo_idx_CO)*n(:,patmo_idx_M) &
-        - krate(:,5)*n(:,patmo_idx_H)*n(:,patmo_idx_O2)*n(:,patmo_idx_M) &
-        + krate(:,5)*n(:,patmo_idx_H)*n(:,patmo_idx_O2)*n(:,patmo_idx_M) &
-        - krate(:,9)*n(:,patmo_idx_O3)*n(:,patmo_idx_M) &
-        + krate(:,9)*n(:,patmo_idx_O3)*n(:,patmo_idx_M) &
-        - krate(:,12)*n(:,patmo_idx_CO2)*n(:,patmo_idx_M) &
-        + krate(:,12)*n(:,patmo_idx_CO2)*n(:,patmo_idx_M) &
-        - krate(:,13)*n(:,patmo_idx_HO2)*n(:,patmo_idx_M) &
-        + krate(:,13)*n(:,patmo_idx_HO2)*n(:,patmo_idx_M)
+        + krate(:,13)*n(:,patmo_idx_HO2)
 
     dn(:,patmo_idx_O3) = &
-        + krate(:,1)*n(:,patmo_idx_O)*n(:,patmo_idx_O2)*n(:,patmo_idx_M) &
+        + krate(:,1)*n(:,patmo_idx_O)*n(:,patmo_idx_O2) &
         - krate(:,2)*n(:,patmo_idx_O)*n(:,patmo_idx_O3) &
         - krate(:,7)*n(:,patmo_idx_O3) &
-        - krate(:,9)*n(:,patmo_idx_O3)*n(:,patmo_idx_M) &
+        - krate(:,9)*n(:,patmo_idx_O3) &
         + krate(:,10)*n(:,patmo_idx_O2)*n(:,patmo_idx_O2)
 
     dn(:,patmo_idx_H) = &
         - krate(:,3)*n(:,patmo_idx_H)*n(:,patmo_idx_HO2) &
-        - krate(:,5)*n(:,patmo_idx_H)*n(:,patmo_idx_O2)*n(:,patmo_idx_M) &
+        - krate(:,5)*n(:,patmo_idx_H)*n(:,patmo_idx_O2) &
         + krate(:,11)*n(:,patmo_idx_O)*n(:,patmo_idx_H2O) &
-        + krate(:,13)*n(:,patmo_idx_HO2)*n(:,patmo_idx_M)
+        + krate(:,13)*n(:,patmo_idx_HO2)
 
     dn(:,patmo_idx_HO2) = &
         - krate(:,3)*n(:,patmo_idx_H)*n(:,patmo_idx_HO2) &
-        + krate(:,5)*n(:,patmo_idx_H)*n(:,patmo_idx_O2)*n(:,patmo_idx_M) &
+        + krate(:,5)*n(:,patmo_idx_H)*n(:,patmo_idx_O2) &
         + krate(:,11)*n(:,patmo_idx_O)*n(:,patmo_idx_H2O) &
-        - krate(:,13)*n(:,patmo_idx_HO2)*n(:,patmo_idx_M)
+        - krate(:,13)*n(:,patmo_idx_HO2)
 
     dn(:,patmo_idx_H2O) = &
         + krate(:,3)*n(:,patmo_idx_H)*n(:,patmo_idx_HO2) &
         - krate(:,11)*n(:,patmo_idx_O)*n(:,patmo_idx_H2O)
 
     dn(:,patmo_idx_CO) = &
-        - krate(:,4)*n(:,patmo_idx_O)*n(:,patmo_idx_CO)*n(:,patmo_idx_M) &
+        - krate(:,4)*n(:,patmo_idx_O)*n(:,patmo_idx_CO) &
         + krate(:,8)*n(:,patmo_idx_CO2) &
-        + krate(:,12)*n(:,patmo_idx_CO2)*n(:,patmo_idx_M)
+        + krate(:,12)*n(:,patmo_idx_CO2)
 
     dn(:,patmo_idx_CO2) = &
-        + krate(:,4)*n(:,patmo_idx_O)*n(:,patmo_idx_CO)*n(:,patmo_idx_M) &
+        + krate(:,4)*n(:,patmo_idx_O)*n(:,patmo_idx_CO) &
         - krate(:,8)*n(:,patmo_idx_CO2) &
-        - krate(:,12)*n(:,patmo_idx_CO2)*n(:,patmo_idx_M)
+        - krate(:,12)*n(:,patmo_idx_CO2)
 
     ngas_hpp(:) = ngas_hp(:)/ngas_p(:)
     ngas_hpz(:) = ngas_hp(:)/ngas(:)
@@ -234,7 +220,7 @@ contains
     
 
     ! Gravity Settling
-    
+   
 
     !unroll chemistry
     dy(:) = 0d0
